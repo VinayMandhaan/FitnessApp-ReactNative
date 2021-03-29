@@ -1,0 +1,14 @@
+com/fitness/ReactNativeFlipper.java
+ com.fitness.ReactNativeFlipper
+ com.fitness.ReactNativeFlipper$1
+ com.fitness.ReactNativeFlipper$2
+ com.fitness.ReactNativeFlipper$2$1
+com/fitness/MainActivity.java
+ com.fitness.MainActivity
+com/fitness/MainApplication.java
+ com.fitness.MainApplication
+ com.fitness.MainApplication$1
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList
+com/fitness/BuildConfig.java
+ com.fitness.BuildConfig
