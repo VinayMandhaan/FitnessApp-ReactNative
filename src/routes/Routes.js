@@ -53,7 +53,7 @@ function handleBackButtonClick() {
 
 function tabNavigation(){
   return(
-      <Tab.Navigator  tabBarOptions={{style:{backgroundColor:'#5A5A5D', borderTopRightRadius:25, borderTopLeftRadius:25, height:70}}}>
+      <Tab.Navigator initialRouteName="Home"  tabBarOptions={{style:{backgroundColor:'#303030', borderTopRightRadius:25, borderTopLeftRadius:25, height:70}}}>
         <Tab.Screen name="Report" component={Report} options={{tabBarLabel: '',
         tabBarIcon: ({focused}) => (
             <Icon name="my-library-books" color={focused ? "white" : "white"} size={focused ? 35 : 32} style={{marginTop:5, borderRadius:60/2, backgroundColor:focused ?  '#B02E14' : '#040506', padding:8}}/>
