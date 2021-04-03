@@ -16,6 +16,7 @@ import Register from '../screens/Auth/Register'
 import Home from '../screens/Home/Home'
 import Report from '../screens/Home/Report'
 import Profile from '../screens/Home/Profile'
+import Workout from '../screens/Home/Workout'
 
 
 const Stack = createStackNavigator();
@@ -53,7 +54,7 @@ function handleBackButtonClick() {
 
 function tabNavigation(){
   return(
-      <Tab.Navigator initialRouteName="Home"  tabBarOptions={{style:{backgroundColor:'#303030', borderTopRightRadius:25, borderTopLeftRadius:25, height:70}}}>
+      <Tab.Navigator initialRouteName="Home"  tabBarOptions={{style:{backgroundColor:'#303030',  height:70}}}>
         <Tab.Screen name="Report" component={Report} options={{tabBarLabel: '',
         tabBarIcon: ({focused}) => (
             <Icon name="my-library-books" color={focused ? "white" : "white"} size={focused ? 35 : 32} style={{marginTop:5, borderRadius:60/2, backgroundColor:focused ?  '#B02E14' : '#040506', padding:8}}/>
@@ -103,7 +104,7 @@ function Routes(props) {
               </>
             )
           } */}
-          <Stack.Screen name="Main" component={tabNavigation}/>
+          <Stack.Screen name="Main" component={Workout}/>
           </Stack.Navigator>
         </NavigationContainer>
       );

@@ -34,13 +34,13 @@ const Home = () => {
     ]
     return(
         <View style={{backgroundColor:'#040506', flex:1}}>
-            <ScrollView>
             <ImageBackground source={require('../../assets/images/deadlift-barbell.jpg')} imageStyle={{opacity:0.5}} style={{width:'100%', height:250}}>
                 <View style={{display:'flex', margin:30}}>
                     <Text style={{color:'white', fontSize:22, marginTop:40, fontWeight:'bold'}}>WORKOUT SESSIONS</Text>
                     <Text style={{color:'#d3d3d3', marginTop:20, fontWeight:'bold'}}>Live Happier and Healthier By Working Out Everyday</Text>
                 </View>
             </ImageBackground>
+            <ScrollView>
             <View>
                 <View>
                     <Text style={{color:'white', textAlign:'center', fontWeight:'bold',fontSize:16,marginTop:15}}>WORKOUT FOR TODAY</Text>
@@ -49,17 +49,17 @@ const Home = () => {
                     <View style={{display:'flex', flexDirection:'row', borderRadius:10, justifyContent:'space-between', margin:20, backgroundColor:'#303030'}}>
                         <View style={{display:'flex', flexDirection:'column'}}>
                             <View style={{display:'flex', flexDirection:'row', margin:10, width:120}}>
-                                <Icon name="dumbbell" color="red" size={20}/>
+                                <Icon name="dumbbell" color="#B02E14" size={20}/>
                                 <Text style={{color:'white'}}>:</Text>
                                 <Text style={{color:'white', marginLeft:5, fontWeight:'bold'}}>SHOULDERS AND ARMS</Text>
                             </View>
                             <View style={{display:'flex', flexDirection:'row', margin:10, width:120}}>
-                                <Icon name="timer-outline" color="red" size={20}/>
+                                <Icon name="timer-outline" color="#B02E14" size={20}/>
                                 <Text style={{color:'white'}}>:</Text>
                                 <Text style={{color:'white', marginLeft:5, fontWeight:'bold'}}>60s</Text>
                             </View>
                             <View style={{display:'flex', flexDirection:'row', margin:10, width:120}}>
-                                <Icon name="weight-lifter" color="red" size={20}/>
+                                <Icon name="weight-lifter" color="#B02E14" size={20}/>
                                 <Text style={{color:'white'}}>:</Text>
                                 <Text style={{color:'white', marginLeft:5, fontWeight:'bold'}}>23 SETS</Text>
                             </View>
@@ -85,17 +85,17 @@ const Home = () => {
                             </ImageBackground>
                             <View style={{display:'flex', flexDirection:'column'}}>
                                 <View style={{display:'flex', flexDirection:'row', margin:5, width:160}}>
-                                    <Icon name="dumbbell" color="red" size={20}/>
+                                    <Icon name="dumbbell" color="#B02E14" size={20}/>
                                     <Text style={{color:'white'}}>:</Text>
                                     <Text style={{color:'white', marginLeft:5, fontWeight:'bold'}}>{s.name}</Text>
                                 </View>
                                 <View style={{display:'flex', flexDirection:'row', margin:5, width:160}}>
-                                    <Icon name="timer-outline" color="red" size={20}/>
+                                    <Icon name="timer-outline" color="#B02E14" size={20}/>
                                     <Text style={{color:'white'}}>:</Text>
                                     <Text style={{color:'white', marginLeft:5, fontWeight:'bold'}}>{s.time}</Text>
                                 </View>
                                 <View style={{display:'flex', flexDirection:'row', margin:5, width:160}}>
-                                    <Icon name="weight-lifter" color="red" size={20}/>
+                                    <Icon name="weight-lifter" color="#B02E14" size={20}/>
                                     <Text style={{color:'white'}}>:</Text>
                                     <Text style={{color:'white', marginLeft:5, fontWeight:'bold'}}>10 SETS</Text>
                                 </View>
