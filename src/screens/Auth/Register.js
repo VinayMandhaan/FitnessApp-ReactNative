@@ -5,6 +5,7 @@ import {
     Text,
     TouchableOpacity,
     View,
+    ImageBackground
 } from 'react-native';
 import {TextInput} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -13,11 +14,12 @@ import EvilIcons from 'react-native-vector-icons/EvilIcons';
 const Register = () => {
     return (
         <View style={{backgroundColor:'#040506', flex:1}}>
+            <ImageBackground source={require('../../assets/images/gym.jpg')} imageStyle={{opacity:0.3, resizeMode:'cover'}} style={{width:'100%', height:'100%'}}>
             <View style={{marginTop:40}}>
-                <Text style={{color:'white', fontSize:24, fontWeight:'bold', textAlign:'center'}}>FITNESS APP</Text>
+                {/* <Text style={{color:'white', fontSize:24, fontWeight:'bold', textAlign:'center'}}>FITNESS APP</Text> */}
             </View>
             <View style={{marginTop:40, margin:40}}>
-                <Text style={{color:'white', fontSize:24, fontWeight:'bold'}}>Register</Text>
+                <Text style={{color:'white', fontSize:24, fontWeight:'bold', textAlign:'center'}}>REGISTER TO STAY FIT</Text>
             </View>
             <View style={{marginTop:50}}>
 
@@ -64,7 +66,7 @@ const Register = () => {
                     <Image source={require('../../assets/images/google.png')} style={{width:60, height:60}}/>
                 </TouchableOpacity>
             </View> */}
-
+        </ImageBackground>
         </View>
     )
 }

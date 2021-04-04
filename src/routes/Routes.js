@@ -104,6 +104,8 @@ function Routes(props) {
               </>
             )
           } */}
+          {/* <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="SignUp" component={Register}/> */}
           <Stack.Screen name="Main" component={Workout}/>
           </Stack.Navigator>
         </NavigationContainer>

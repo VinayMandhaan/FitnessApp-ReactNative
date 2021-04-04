@@ -50,8 +50,8 @@ const Workout = () => {
                     <Icon name="chevron-left" color="white" size={30}/>
                 </View>
                 <View style={{display:'flex', margin:30, position:'absolute', bottom:0, width:200}}>
-                    <Text style={{color:'white', fontSize:22,fontWeight:'bold'}}>BACK AND CHEST</Text>
-                    <Text style={{color:'white', fontSize:22,fontWeight:'bold'}}>WORKOUT</Text>
+                    <Text style={{color:'white', fontSize:22,fontFamily:'Poppins-Bold'}}>BACK AND CHEST</Text>
+                    <Text style={{color:'white', fontSize:22,fontFamily:'Poppins-Bold'}}>WORKOUT</Text>
                 </View>
             </ImageBackground>
 
@@ -59,15 +59,15 @@ const Workout = () => {
                 <View style={{display:'flex', flexDirection:'row'}}>
                     <View style={{flexDirection:'row', margin:8}}>
                         <Icon name="timer-outline" color="#B02E14" size={20}/>
-                        <Text style={{color:'white', marginLeft:5}}>Duration: <Text style={{color:'#B02E14'}}>15 Mins</Text></Text>
+                        <Text style={{color:'white', marginLeft:5, fontFamily:'Poppins-Light'}}>Duration: <Text style={{color:'#B02E14', fontFamily:'Poppins-Regular'}}>15 Mins</Text></Text>
                     </View>
                     <View style={{flexDirection:'row', margin:8}}>
                         <Icon name="weight-lifter" color="#B02E14" size={20}/>
-                        <Text style={{color:'white', marginLeft:5}}>Sessions: <Text style={{color:'#B02E14'}}>3</Text></Text>
+                        <Text style={{color:'white', marginLeft:5, fontFamily:'Poppins-Light'}}>Sessions: <Text style={{color:'#B02E14', fontFamily:'Poppins-Regular'}}>3</Text></Text>
                     </View>
                     <View style={{flexDirection:'row', margin:8}}>
                         <Icon name="dumbbell" color="#B02E14" size={20}/>
-                        <Text style={{color:'white', marginLeft:5}}>Sets: <Text style={{color:'#B02E14'}}>23</Text></Text>
+                        <Text style={{color:'white', marginLeft:5, fontFamily:'Poppins-Light'}}>Sets: <Text style={{color:'#B02E14', fontFamily:'Poppins-Regular'}}>23</Text></Text>
                     </View>
                 </View>
             </View>
@@ -77,10 +77,10 @@ const Workout = () => {
                     newData.map(s => (
                         <View style={{backgroundColor:'#303030', margin:20, borderRadius:10, padding:20}}>
                             <View style={{flexDirection:'row', justifyContent:'space-between'}}>
-                                <Text style={{color:'white', fontWeight:'bold'}}>{s.session}</Text>
+                                <Text style={{color:'white', fontFamily:'Poppins-SemiBold'}}>{s.session}</Text>
                                 <View style={{flexDirection:'column'}}>
-                                    <Text style={{color:'#d3d3d3'}}>Reps: <Text style={{color:'#B02E14', fontWeight:'bold'}}>{s.reps}</Text></Text>
-                                    <Text style={{color:'#d3d3d3'}}>Sets: <Text style={{color:'#B02E14', fontWeight:'bold'}}>{s.sets}</Text></Text>
+                                    <Text style={{color:'#d3d3d3', fontFamily:'Poppins-Light'}}>Reps: <Text style={{color:'#B02E14', fontFamily:'Poppins-Bold'}}>{s.reps}</Text></Text>
+                                    <Text style={{color:'#d3d3d3', fontFamily:'Poppins-Light'}}>Sets: <Text style={{color:'#B02E14', fontFamily:'Poppins-Bold'}}>{s.sets}</Text></Text>
                                 </View>
                             </View>
                         </View>
