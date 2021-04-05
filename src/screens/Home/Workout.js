@@ -10,7 +10,7 @@ import {
 import {TextInput} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const Workout = () => {
+const Workout = (props) => {
     const newData = [
         {
             id:1,
@@ -47,7 +47,9 @@ const Workout = () => {
         <View style={{display:'flex', flex:1}}>
             <ImageBackground source={require('../../assets/images/chest.jpg')} imageStyle={{opacity:0.5}} style={{width:'100%', height:250}}>
                 <View style={{margin:30, borderRadius:80/2, borderColor:'white', borderWidth:2, height:40, width:40, justifyContent:'center', alignItems:'center'}}>
-                    <Icon name="chevron-left" color="white" size={30}/>
+                    <TouchableOpacity onPress={()=>props.navigation.pop()}>
+                        <Icon name="chevron-left" color="white" size={30}/>
+                    </TouchableOpacity>
                 </View>
                 <View style={{display:'flex', margin:30, position:'absolute', bottom:0, width:200}}>
                     <Text style={{color:'white', fontSize:22,fontFamily:'Poppins-Bold'}}>BACK AND CHEST</Text>

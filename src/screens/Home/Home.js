@@ -11,7 +11,7 @@ import {TextInput} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
-const Home = () => {
+const Home = (props) => {
     const newData = [
         {
             id:1,
@@ -46,6 +46,7 @@ const Home = () => {
                     <Text style={{color:'white', textAlign:'center', fontFamily:'Poppins-SemiBold',fontSize:16,marginTop:15}}>WORKOUT FOR TODAY</Text>
                 </View>
                 <View>
+                <TouchableOpacity onPress={()=>props.navigation.navigate('Workout')}>
                     <View style={{display:'flex', flexDirection:'row', borderRadius:10, justifyContent:'space-between', margin:20, backgroundColor:'#303030'}}>
                         <View style={{display:'flex', flexDirection:'column'}}>
                             <View style={{display:'flex', flexDirection:'row', margin:10, width:120}}>
@@ -68,6 +69,7 @@ const Home = () => {
                             <Image source={require('../../assets/images/Bicep.jpg')} style={{width:190,height:150, borderTopRightRadius:10, borderBottomRightRadius:10, opacity:0.8}}/>
                         </View>
                     </View>
+                </TouchableOpacity>
                 </View>
                 <View>
                     <Text style={{color:'white', textAlign:'center', fontFamily:'Poppins-SemiBold',fontSize:16,marginTop:15}}>SESSIONS</Text>

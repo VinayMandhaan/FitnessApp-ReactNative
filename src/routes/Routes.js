@@ -17,6 +17,7 @@ import Home from '../screens/Home/Home'
 import Report from '../screens/Home/Report'
 import Profile from '../screens/Home/Profile'
 import Workout from '../screens/Home/Workout'
+import Leftover from '../screens/Home/Leftover';
 
 
 const Stack = createStackNavigator();
@@ -104,9 +105,11 @@ function Routes(props) {
               </>
             )
           } */}
-          {/* <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="SignUp" component={Register}/> */}
-          <Stack.Screen name="Main" component={Workout}/>
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="SignUp" component={Register}/>
+          <Stack.Screen name="Main" component={tabNavigation}/>
+          <Stack.Screen name="Workout" component={Workout}/>
+          <Stack.Screen name="Leftover" component={Leftover}/>
           </Stack.Navigator>
         </NavigationContainer>
       );

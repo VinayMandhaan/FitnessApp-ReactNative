@@ -6,6 +6,7 @@ import {
     Text,
     TouchableOpacity,
     View,
+    Dimensions
 } from 'react-native';
 import {TextInput} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -18,6 +19,8 @@ const Login = (props) => {
             </View>
             <View style={{marginTop:40, margin:40}}>
                 <Text style={{fontFamily:'Poppins-Bold',color:'white', fontSize:24, textAlign:'center'}}>LOGIN TO STAY FIT</Text>
+                <View style={{backgroundColor:'white', width:Dimensions.get('window').width - 150, height:2, flexDirection:'row', alignSelf:'center'}}>
+                </View>
             </View>
             <View style={{marginTop:50}}>
 
@@ -51,8 +54,8 @@ const Login = (props) => {
                 </TouchableOpacity>
             </View>
             <View style={{alignContent:'center'}}>
-                <TouchableOpacity>
-                    <Text style={{color:'white', textAlign:'center', fontFamily:'Poppins-SemiBold'}}>Don't Have An Account Yet? <Text style={{color:'#B02E14', fontFamily:'Poppins-Bold'}}>SignUp</Text></Text>
+                <TouchableOpacity onPress={()=>props.navigation.navigate('SignUp')}>
+                    <Text style={{color:'white', textAlign:'center', fontFamily:'Poppins-SemiBold'}}>Don't Have An Account Yet? <Text style={{color:'#B02E14', fontFamily:'Poppins-Bold'}}>SIGNUP</Text></Text>
                 </TouchableOpacity>
             </View>
             <View>

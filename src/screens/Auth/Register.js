@@ -5,13 +5,14 @@ import {
     Text,
     TouchableOpacity,
     View,
-    ImageBackground
+    ImageBackground,
+    Dimensions
 } from 'react-native';
 import {TextInput} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
-const Register = () => {
+const Register = (props) => {
     return (
         <View style={{backgroundColor:'#040506', flex:1}}>
             <ImageBackground source={require('../../assets/images/gym.jpg')} imageStyle={{opacity:0.3, resizeMode:'cover'}} style={{width:'100%', height:'100%'}}>
@@ -19,7 +20,9 @@ const Register = () => {
                 {/* <Text style={{color:'white', fontSize:24, fontWeight:'bold', textAlign:'center'}}>FITNESS APP</Text> */}
             </View>
             <View style={{marginTop:40, margin:40}}>
-                <Text style={{color:'white', fontSize:24, fontWeight:'bold', textAlign:'center'}}>REGISTER TO STAY FIT</Text>
+                <Text style={{color:'white', fontSize:24, fontFamily:'Poppins-Bold', textAlign:'center'}}>REGISTER TO STAY FIT</Text>
+            <View style={{backgroundColor:'white', width:Dimensions.get('window').width - 100, height:2, flexDirection:'row', alignSelf:'center'}}>
+            </View>
             </View>
             <View style={{marginTop:50}}>
 
@@ -53,12 +56,12 @@ const Register = () => {
             </View>
             <View>
                 <TouchableOpacity style={{backgroundColor:'#B02E14', alignContent:'center', padding:15, margin:20, borderRadius:10}}>
-                    <Text style={{textAlign:'center', color:'white', fontWeight:'bold', fontSize:16}}>Register</Text>
+                    <Text style={{textAlign:'center', color:'white', fontFamily:'Poppins-Bold', fontSize:16}}>REGISTER</Text>
                 </TouchableOpacity>
             </View>
             <View style={{alignContent:'center'}}>
-                <TouchableOpacity>
-                    <Text style={{color:'white', textAlign:'center', fontWeight:'bold'}}>Already Have An Account? <Text style={{color:'#B02E14', fontWeight:'bold'}}>Login</Text></Text>
+                <TouchableOpacity onPress={()=>props.navigation.navigate('Login')}>
+                    <Text style={{color:'white', textAlign:'center', fontFamily:'Poppins-SemiBold'}}>Already Have An Account? <Text style={{color:'#B02E14', fontFamily:'Poppins-Bold'}}>LOGIN</Text></Text>
                 </TouchableOpacity>
             </View>
             {/* <View style={{alignItems:'center', marginTop:20}}>
