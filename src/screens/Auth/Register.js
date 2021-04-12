@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, {useState} from 'react';
 import {
     Image,
     Text,
@@ -11,8 +11,30 @@ import {
 import {TextInput} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import {register} from '../../actions/auth'
+import {useSelector, useDispatch} from 'react-redux'
 
 const Register = (props) => {
+    const dispatch = useDispatch()
+
+    const [email,setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [username,setUsername] = useState('')
+
+    const isReg = useSelector(state=>state.auth.isReg);
+
+
+    const onSubmit = () => {
+        const formData = {
+            email:email,
+            password:password,
+            username:username,
+            confirmpassword:password
+        }
+        dispatch(register(formData))
+    }
+
+    console.log(isReg,'IS REGISTERED')
     return (
         <View style={{backgroundColor:'#040506', flex:1}}>
             <ImageBackground source={require('../../assets/images/gym.jpg')} imageStyle={{opacity:0.3, resizeMode:'cover'}} style={{width:'100%', height:'100%'}}>
@@ -34,6 +56,7 @@ const Register = (props) => {
                 theme={{roundness:10, colors: { placeholder: 'black', text: 'black', primary: '#040506'}}}
                 style={{borderRadius:10, borderColor:'red'}}
                 label="Username"
+                onChangeText={(e)=>setUsername(e)}
             />
             </View>
             <View style={{margin:20}}>
@@ -43,6 +66,7 @@ const Register = (props) => {
                 theme={{roundness:10, colors: { placeholder: 'black', text: 'black', primary: '#040506'}}}
                 style={{borderRadius:10, borderColor:'red'}}
                 label="Email"
+                onChangeText={(e)=>setEmail(e)}
             />
             </View>
             <View style={{margin:20}}>
@@ -52,10 +76,11 @@ const Register = (props) => {
                 theme={{roundness:10, colors: { placeholder: 'black', text: 'black', primary: '#040506'}}}
                 style={{borderRadius:10, borderColor:'red'}}
                 label="Password"
+                onChangeText={(e)=>setPassword(e)}
             />
             </View>
             <View>
-                <TouchableOpacity style={{backgroundColor:'#B02E14', alignContent:'center', padding:15, margin:20, borderRadius:10}}>
+                <TouchableOpacity onPress={()=>onSubmit()} style={{backgroundColor:'#B02E14', alignContent:'center', padding:15, margin:20, borderRadius:10}}>
                     <Text style={{textAlign:'center', color:'white', fontFamily:'Poppins-Bold', fontSize:16}}>REGISTER</Text>
                 </TouchableOpacity>
             </View>

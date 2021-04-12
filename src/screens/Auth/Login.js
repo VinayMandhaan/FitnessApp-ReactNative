@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, {useState} from 'react';
 import {
     Image,
     ImageBackground,
@@ -11,6 +11,13 @@ import {
 import {TextInput} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 const Login = (props) => {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const onSubmit = () => {
+        console.log(email,password)
+    }
+
     return (
         <View style={{flex:1}}>
             <ImageBackground source={require('../../assets/images/gym.jpg')} imageStyle={{opacity:0.3, resizeMode:'cover'}} style={{width:'100%', height:'100%'}}>
@@ -32,6 +39,7 @@ const Login = (props) => {
                 theme={{roundness:10, colors: { placeholder: 'black', text: 'black', primary: '#040506'}}}
                 style={{borderRadius:10, borderColor:'red',fontFamily:'OpenSans-Regular'}}
                 label="Email"
+                onChangeText={(e)=>setEmail(e)}
             />
             </View>
             <View style={{margin:20}}>
@@ -41,6 +49,8 @@ const Login = (props) => {
                 theme={{roundness:10, colors: { placeholder: 'black', text: 'black', primary: '#040506'}}}
                 style={{borderRadius:10, borderColor:'red'}}
                 label="Password"
+                onChangeText={(e)=>setPassword(e)}
+
             />
             <View>
                 <TouchableOpacity>
@@ -49,7 +59,7 @@ const Login = (props) => {
             </View>
             </View>
             <View>
-                <TouchableOpacity onPress={()=>props.navigation.navigate('Main')} style={{backgroundColor:'#B02E14', alignContent:'center', padding:15, margin:20, borderRadius:10}}>
+                <TouchableOpacity onPress={()=>onSubmit()} style={{backgroundColor:'#B02E14', alignContent:'center', padding:15, margin:20, borderRadius:10}}>
                     <Text style={{textAlign:'center', color:'white', fontFamily:'Poppins-Bold', fontSize:16}}>LOGIN</Text>
                 </TouchableOpacity>
             </View>
