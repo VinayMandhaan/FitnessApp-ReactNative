@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
     Image,
     ImageBackground,
@@ -9,9 +9,12 @@ import {
 } from 'react-native';
 import {TextInput} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import {get_excercise} from '../../actions/excercise'
+import {useDispatch, useSelector} from 'react-redux'
 
 const Home = (props) => {
+    const dispatch = useDispatch()
+    const userExcercise = useSelector(state=>state.excercise.excercises);
     const newData = [
         {
             id:1,
@@ -32,6 +35,30 @@ const Home = (props) => {
             time:'90s',
         }
     ]
+
+    const getExcercises = () => {
+        dispatch(get_excercise())
+    }
+
+    const getExerciseName = () => {
+        var exName
+        exName = userExcercise && userExcercise.excersize[0].excersize.type
+        return exName
+    }
+
+    const getTotalSets = () => {
+        var totalSets
+        totalSets = userExcercise && userExcercise.excersize.map(s => s.excersize.sets)
+        var newSets = totalSets && totalSets.map(i => Number(i))
+        var userSets = newSets && newSets.reduce((a,b) => a + b, 0)
+        return userSets
+    }
+
+    useEffect(() => {
+        getExcercises()
+    },[])
+    // console.log(userExcercise && userExcercise.excersize.map(s => console.log(s.excersize.name)),'HEY')
+
     return(
         <View style={{backgroundColor:'#040506', flex:1}}>
             <ImageBackground source={require('../../assets/images/deadlift-barbell.jpg')} imageStyle={{opacity:0.5}} style={{width:'100%', height:250}}>
@@ -52,17 +79,17 @@ const Home = (props) => {
                             <View style={{display:'flex', flexDirection:'row', margin:10, width:120}}>
                                 <Icon name="dumbbell" color="#B02E14" size={20}/>
                                 <Text style={{color:'white'}}>:</Text>
-                                <Text style={{color:'white', marginLeft:5, fontFamily:'Poppins-Regular'}}>SHOULDERS AND ARMS</Text>
+                                <Text style={{color:'white', marginLeft:5, fontFamily:'Poppins-Regular'}}>{getExerciseName()}</Text>
                             </View>
-                            <View style={{display:'flex', flexDirection:'row', margin:10, width:120}}>
+                            {/* <View style={{display:'flex', flexDirection:'row', margin:10, width:120}}>
                                 <Icon name="timer-outline" color="#B02E14" size={20}/>
                                 <Text style={{color:'white'}}>:</Text>
                                 <Text style={{color:'white', marginLeft:5, fontFamily:'Poppins-Regular'}}>60s</Text>
-                            </View>
+                            </View> */}
                             <View style={{display:'flex', flexDirection:'row', margin:10, width:120}}>
                                 <Icon name="weight-lifter" color="#B02E14" size={20}/>
                                 <Text style={{color:'white'}}>:</Text>
-                                <Text style={{color:'white', marginLeft:5, fontFamily:'Poppins-Regular'}}>23 SETS</Text>
+                                <Text style={{color:'white', marginLeft:5, fontFamily:'Poppins-Regular'}}>{getTotalSets()}</Text>
                             </View>
                         </View>
                         <View>
@@ -77,10 +104,10 @@ const Home = (props) => {
                 <ScrollView horizontal={true}>
                 <View style={{flexDirection:'row'}}>
                 {
-                    newData.map(s => (
+                    userExcercise && userExcercise.excersize.map(s => (
                         <View style={{margin:20}}>
                         <View style={{backgroundColor:'#303030', width:200, height:240, borderRadius:10, display:'flex'}}>
-                            <ImageBackground source={require('../../assets/images/dumbbell-press.jpg')} imageStyle={{resizeMode:'cover', opacity:0.5, borderBottomLeftRadius:10, borderBottomRightRadius:10}}  style={{width:100, height:120, alignSelf:'center'}}>
+                            <ImageBackground source={{uri:s.image}} imageStyle={{resizeMode:'cover', opacity:0.5, borderBottomLeftRadius:10, borderBottomRightRadius:10}}  style={{width:100, height:120, alignSelf:'center'}}>
                                 <View style={{display:'flex', justifyContent:'center', alignContent:'center', alignItems:'center', height:100}}>
                                 <Text style={{color:'#d3d3d3', textAlign:'center', fontFamily:'Poppins-SemiBold'}}>{s.session}</Text>
                                 </View>
@@ -89,17 +116,17 @@ const Home = (props) => {
                                 <View style={{display:'flex', flexDirection:'row', margin:5, width:160}}>
                                     <Icon name="dumbbell" color="#B02E14" size={20}/>
                                     <Text style={{color:'white'}}>:</Text>
-                                    <Text style={{color:'white', marginLeft:5, fontFamily:'Poppins-Regular'}}>{s.name}</Text>
+                                    <Text style={{color:'white', marginLeft:5, fontFamily:'Poppins-Regular'}}>{s.excersize.name}</Text>
                                 </View>
                                 <View style={{display:'flex', flexDirection:'row', margin:5, width:160}}>
                                     <Icon name="timer-outline" color="#B02E14" size={20}/>
                                     <Text style={{color:'white'}}>:</Text>
-                                    <Text style={{color:'white', marginLeft:5, fontFamily:'Poppins-Regular'}}>{s.time}</Text>
+                                    <Text style={{color:'white', marginLeft:5, fontFamily:'Poppins-Regular'}}>{s.excersize.rest} rest</Text>
                                 </View>
                                 <View style={{display:'flex', flexDirection:'row', margin:5, width:160}}>
                                     <Icon name="weight-lifter" color="#B02E14" size={20}/>
                                     <Text style={{color:'white'}}>:</Text>
-                                    <Text style={{color:'white', marginLeft:5, fontFamily:'Poppins-Regular'}}>10 SETS</Text>
+                                    <Text style={{color:'white', marginLeft:5, fontFamily:'Poppins-Regular'}}>{s.excersize.sets}</Text>
                                 </View>
                             </View>
                         </View>

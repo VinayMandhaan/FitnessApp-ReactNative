@@ -8,7 +8,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
-
+import {useSelector, useDispatch} from 'react-redux'
 
 //Screens
 import Login from '../screens/Auth/Login'
@@ -18,6 +18,7 @@ import Report from '../screens/Home/Report'
 import Profile from '../screens/Home/Profile'
 import Workout from '../screens/Home/Workout'
 import Leftover from '../screens/Home/Leftover';
+import Sessions from '../screens/Home/Sessions'
 
 
 const Stack = createStackNavigator();
@@ -83,33 +84,35 @@ function tabNavigation(){
 
 
 function Routes(props) {
-//   let isAuthenticated=useSelector(state=>state.auth.user);
+  let isAuthenticated=useSelector(state=>state.auth.user);
 
   return (
         <NavigationContainer theme={MyTheme}>
           <Stack.Navigator screenOptions={{
             headerShown: false
         }}>
-          {/* {
+          {
             isAuthenticated ? 
             (
               <>
-              <Stack.Screen name="Main" component={tabNavigation}/>
+                <Stack.Screen name="Main" component={tabNavigation}/>
+                <Stack.Screen name="Workout" component={Workout}/>
+                <Stack.Screen name="Leftover" component={Leftover}/>
+                <Stack.Screen name="Sessions" component={Sessions}/>
               </>
             ):
             (
               <>
-
-              <Stack.Screen name="Login" component={Login} />
-              <Stack.Screen name="SignUp" component={Register}/>
+                <Stack.Screen name="Login" component={Login} />
+                <Stack.Screen name="SignUp" component={Register}/>
               </>
             )
-          } */}
-          <Stack.Screen name="Login" component={Login} />
+          }
+          {/* <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="SignUp" component={Register}/>
           <Stack.Screen name="Main" component={tabNavigation}/>
           <Stack.Screen name="Workout" component={Workout}/>
-          <Stack.Screen name="Leftover" component={Leftover}/>
+          <Stack.Screen name="Leftover" component={Leftover}/> */}
           </Stack.Navigator>
         </NavigationContainer>
       );

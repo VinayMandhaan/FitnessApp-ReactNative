@@ -10,12 +10,20 @@ import {
 } from 'react-native';
 import {TextInput} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {login} from '../../actions/auth'
+import {useSelector, useDispatch} from 'react-redux'
+
 const Login = (props) => {
+    const dispatch = useDispatch()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const onSubmit = () => {
-        console.log(email,password)
+        const formData = {
+            email:email,
+            password:password
+        }
+        dispatch(login(formData))
     }
 
     return (
