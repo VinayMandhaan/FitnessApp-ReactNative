@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
     Image,
     ImageBackground,
@@ -10,8 +10,12 @@ import {
 } from 'react-native';
 import {TextInput} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useDispatch, useSelector} from 'react-redux'
+import { leftover_excercise } from '../../actions/excercise';
 
 const Leftover = (props) => {
+    const dispatch = useDispatch()
+    const userLeftOver = useSelector(state=>state.excercise.leftover);
     const newData = [
         {
             id:1,
@@ -32,6 +36,23 @@ const Leftover = (props) => {
             sets:'23'
         },
     ]
+
+    const getLeftOver = () => {
+        dispatch(leftover_excercise())
+    }
+
+    const getTotalSets = (val) => {
+        var totalSets
+        totalSets = val && !val.is_off && val.excersize.map(s => s.excersize.sets)
+        var newSets = totalSets && totalSets.map(i => Number(i))
+        var userSets = newSets && newSets.reduce((a,b) => a + b, 0)
+        return userSets
+    }
+
+    useEffect(() => {
+        getLeftOver()
+    },[])
+
     return (
         <View style={{flex:1}}>
             <View style={{margin:20, marginTop:40, flexDirection:'row'}}>
@@ -49,26 +70,28 @@ const Leftover = (props) => {
             <ScrollView>
             <View>
                 {
-                    newData.map(s => (
+                    userLeftOver && userLeftOver.map((s,i) => (
                     <View style={{backgroundColor:'#303030', margin:20, padding:20, borderRadius:10}}>
                         <View style={{display:'flex', flexDirection:'row', marginBottom:10, justifyContent:'center',  alignItems:'center'}}>
-                            <Text style={{color:'white', fontFamily:'Poppins-SemiBold', marginLeft:10}}>{s.name}</Text>
+                            <Text style={{color:'white', fontFamily:'Poppins-SemiBold', marginLeft:10}}>{s.excersize[i].excersize.type}</Text>
                         </View>
                         <View style={{display:'flex'}}>
                         <View style={{flexDirection:'row', margin:8}}>
                             <Icon name="weight-lifter" color="#B02E14" size={20}/>
-                            <Text style={{color:'white', marginLeft:5, fontFamily:'Poppins-Light'}}>Sessions: <Text style={{color:'white', fontFamily:'Poppins-Regular'}}>{s.sessions}</Text></Text>
+                            <Text style={{color:'white', marginLeft:5, fontFamily:'Poppins-Light'}}>Sessions: <Text style={{color:'white', fontFamily:'Poppins-Regular'}}>{s.excersize.length}</Text></Text>
                         </View>
                         <View style={{flexDirection:'row', margin:8}}>
                             <Icon name="dumbbell" color="#B02E14" size={20}/>
-                            <Text style={{color:'white', marginLeft:5, fontFamily:'Poppins-Light'}}>Sets: <Text style={{color:'white', fontFamily:'Poppins-Regular'}}>{s.sets}</Text></Text>
+                            <Text style={{color:'white', marginLeft:5, fontFamily:'Poppins-Light'}}>Sets: <Text style={{color:'white', fontFamily:'Poppins-Regular'}}>{getTotalSets(s)}</Text></Text>
                         </View>
                         <View style={{flexDirection:'row', margin:8}}>
                             <Icon name="calendar" color="#B02E14" size={20}/>
-                            <Text style={{color:'white', marginLeft:5, fontFamily:'Poppins-Light'}}>Date: <Text style={{color:'white', fontFamily:'Poppins-Regular'}}>4-4-2021</Text></Text>
+                            <Text style={{color:'white', marginLeft:5, fontFamily:'Poppins-Light'}}>Week: <Text style={{color:'white', fontFamily:'Poppins-Regular'}}>{s.week} - {s.day.toUpperCase()}</Text></Text>
                         </View>
                         <View>
-                        <TouchableOpacity style={{backgroundColor:'#F12908', margin:20, padding:10, borderRadius:10}}>
+                        <TouchableOpacity onPress={()=>props.navigation.navigate('Workout', {
+                            userData:s
+                        })} style={{backgroundColor:'#F12908', margin:20, padding:10, borderRadius:10}}>
                             <Text style={{color:'white', fontWeight:'bold', textAlign:'center'}}>START</Text>
                         </TouchableOpacity>
                         </View>

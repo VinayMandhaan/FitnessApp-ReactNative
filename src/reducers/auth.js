@@ -1,6 +1,7 @@
 import {REGISTER_SUCCESS,REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, DELETE_ACCOUNT, INFO_UPDATED} from '../actions/types'
 import AsyncStorage  from '@react-native-community/async-storage'
 import { storeUserData } from '../storage/storage'
+import setAuthToken from '../utils/setAuthToken'
 
 
 
@@ -32,6 +33,7 @@ export default function(state = initalState, action){
         case LOGIN_SUCCESS:
             console.log(payload)
             storeUserData('@userData',payload.user)
+            setAuthToken(payload.token)
             AsyncStorage.setItem('token',payload.token)
             return {
                 ...state,

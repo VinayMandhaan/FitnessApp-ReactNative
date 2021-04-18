@@ -9,13 +9,14 @@ import {
 } from 'react-native';
 import {TextInput} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Entypo from 'react-native-vector-icons/Entypo'
 import {get_excercise} from '../../actions/excercise'
 import {useDispatch, useSelector} from 'react-redux'
 
 
 const Workout = (props) => {
     const dispatch = useDispatch()
-    const userExcercise = useSelector(state=>state.excercise.excercises);
+    const {userData} = props.route.params
     const newData = [
         {
             id:1,
@@ -49,19 +50,15 @@ const Workout = (props) => {
         }
     ]
 
-    const getExcercises = () => {
-        dispatch(get_excercise())
-    }
-
     const getExerciseName = () => {
         var exName
-        exName = userExcercise && userExcercise.excersize[0].excersize.type
+        exName = userData && userData.excersize[0].excersize.type
         return exName
     }
 
     const getTotalSets = () => {
         var totalSets
-        totalSets = userExcercise && userExcercise.excersize.map(s => s.excersize.sets)
+        totalSets = userData && userData.excersize.map(s => s.excersize.sets)
         var newSets = totalSets.map(i => Number(i))
         var userSets = newSets.reduce((a,b) => a + b, 0)
         return userSets
@@ -69,17 +66,21 @@ const Workout = (props) => {
 
     const getTotalSessions = () => {
         var totalSessions
-        totalSessions = userExcercise && userExcercise.excersize.length
+        totalSessions = userData && userData.excersize.length
         return totalSessions
     }
 
-    useEffect(() => {
-        getExcercises()
-    },[])
+    const getExcerciseImage = () => {
+        var exImg
+        exImg =  userData && !userData.is_off && userData.excersize[0].excersize.type_image
+        return exImg
+    }
+
+    console.log(userData,'EX')
 
     return (
         <View style={{display:'flex', flex:1}}>
-            <ImageBackground source={require('../../assets/images/chest.jpg')} imageStyle={{opacity:0.5}} style={{width:'100%', height:250}}>
+            <ImageBackground source={{uri:getExcerciseImage()}} imageStyle={{opacity:0.5}} style={{width:'100%', height:250}}>
                 <View style={{margin:30, borderRadius:80/2, borderColor:'white', borderWidth:2, height:40, width:40, justifyContent:'center', alignItems:'center'}}>
                     <TouchableOpacity onPress={()=>props.navigation.pop()}>
                         <Icon name="chevron-left" color="white" size={30}/>
@@ -110,10 +111,14 @@ const Workout = (props) => {
             <ScrollView>
             <View>
                 {
-                    userExcercise && userExcercise.excersize.map(s => (
+                    userData && userData.excersize.map((s,i) => (
                         <View style={{backgroundColor:'#303030', margin:20, borderRadius:10, padding:20}}>
                             <View style={{flexDirection:'row', justifyContent:'space-between'}}>
-                                <Text style={{color:'white', fontFamily:'Poppins-SemiBold'}}>{s.excersize.name}</Text>
+                                <View style={{flexDirection:'column'}}>
+                                    {/* <Text style={{color:'white'}}>{userExcercise.excersize[i]._id}</Text> */}
+                                    <Text style={{color:'white', fontFamily:'Poppins-SemiBold'}}>{s.excersize.name}</Text>
+                                    <Text style={{color:'#d3d3d3', fontFamily:'Poppins-Light'}}>Status: { userData.excersize[i].isCompleted ?  <Icon name='check-circle' color='green' size={16}/> : <Entypo name='circle-with-cross' color='red' size={16}/>}</Text>
+                                </View>
                                 <View style={{flexDirection:'column'}}>
                                     <Text style={{color:'#d3d3d3', fontFamily:'Poppins-Light'}}>Reps: <Text style={{color:'#B02E14', fontFamily:'Poppins-Bold'}}>{s.excersize.reps}</Text></Text>
                                     <Text style={{color:'#d3d3d3', fontFamily:'Poppins-Light'}}>Sets: <Text style={{color:'#B02E14', fontFamily:'Poppins-Bold'}}>{s.excersize.sets}</Text></Text>
@@ -125,7 +130,9 @@ const Workout = (props) => {
             </View>
             </ScrollView>
             <View>
-                <TouchableOpacity onPress={()=>props.navigation.navigate('Sessions')} style={{backgroundColor:'#F12908', margin:10, padding:20, borderRadius:10}}>
+                <TouchableOpacity onPress={()=>props.navigation.navigate('Sessions', {
+                    userSession:userData
+                })} style={{backgroundColor:'#F12908', margin:10, padding:20, borderRadius:10}}>
                     <Text style={{color:'white', fontWeight:'bold', textAlign:'center'}}>START WORKOUT</Text>
                 </TouchableOpacity>
             </View>

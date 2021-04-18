@@ -1,9 +1,11 @@
-import {GET_EXCERCISE} from '../actions/types'
+import {GET_EXCERCISE, GET_LEFTOVER_EXCERCISE, SESSION_COMPLETED} from '../actions/types'
 import AsyncStorage  from '@react-native-community/async-storage'
 import { storeUserData } from '../storage/storage'
 
 const initalState={
-    excercises:null
+    excercises:null,
+    leftover:null,
+    loading:true
 }
 
 export default function(state = initalState, action){
@@ -15,6 +17,20 @@ export default function(state = initalState, action){
                 loading: false,
                 excercises:payload
             }
+        case SESSION_COMPLETED:{
+            return {
+                ...state,
+                loading:false,
+                excercises:payload
+           }
+        }
+        case GET_LEFTOVER_EXCERCISE:{
+            return {
+                ...state,
+                loading:false,
+                leftover:payload
+            }
+        }
         default:
             return state
 
