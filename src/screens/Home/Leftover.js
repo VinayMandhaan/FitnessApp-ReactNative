@@ -6,7 +6,8 @@ import {
     Text,
     TouchableOpacity,
     View,
-    Dimensions
+    Dimensions,
+    ActivityIndicator
 } from 'react-native';
 import {TextInput} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -16,6 +17,7 @@ import { leftover_excercise } from '../../actions/excercise';
 const Leftover = (props) => {
     const dispatch = useDispatch()
     const userLeftOver = useSelector(state=>state.excercise.leftover);
+    const loading = useSelector(state=>state.excercise.loading);
     const newData = [
         {
             id:1,
@@ -49,11 +51,21 @@ const Leftover = (props) => {
         return userSets
     }
 
+    const getExcersieName = (val) => {
+       return val.excersize[0].excersize.type
+    }
+
     useEffect(() => {
         getLeftOver()
     },[])
 
     return (
+        loading ? 
+        (
+            <View style={{display:'flex', flex:1, justifyContent:'center'}}>
+                <ActivityIndicator color="#B02E14" size={'large'}/>
+            </View>
+        ) :
         <View style={{flex:1}}>
             <View style={{margin:20, marginTop:40, flexDirection:'row'}}>
                 <View style={{margin:5, borderRadius:80/2, borderColor:'white', borderWidth:2, height:40, width:40, justifyContent:'center', alignItems:'center'}}>
@@ -73,7 +85,7 @@ const Leftover = (props) => {
                     userLeftOver && userLeftOver.map((s,i) => (
                     <View style={{backgroundColor:'#303030', margin:20, padding:20, borderRadius:10}}>
                         <View style={{display:'flex', flexDirection:'row', marginBottom:10, justifyContent:'center',  alignItems:'center'}}>
-                            <Text style={{color:'white', fontFamily:'Poppins-SemiBold', marginLeft:10}}>{s.excersize[i].excersize.type}</Text>
+                            <Text style={{color:'white', fontFamily:'Poppins-SemiBold', marginLeft:10}}>{getExcersieName(s)}</Text>
                         </View>
                         <View style={{display:'flex'}}>
                         <View style={{flexDirection:'row', margin:8}}>

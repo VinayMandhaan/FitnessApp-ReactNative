@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {
+    ActivityIndicator,
     Image,
     ImageBackground,
     ScrollView,
@@ -11,10 +12,12 @@ import {TextInput} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {get_excercise} from '../../actions/excercise'
 import {useDispatch, useSelector} from 'react-redux'
+import Toast from 'react-native-simple-toast';
 
 const Home = (props) => {
     const dispatch = useDispatch()
     const userExcercise = useSelector(state=>state.excercise.excercises);
+    const loading = useSelector(state=>state.excercise.loading);
     const newData = [
         {
             id:1,
@@ -68,8 +71,17 @@ const Home = (props) => {
     // console.log(userExcercise && userExcercise.excersize.map(s => console.log(s.excersize.name)),'HEY')
 
     // console.log(userExcercise && userExcercise.excersize[0].excersize.image)
-
-    return(
+    // console.log(userExcercise.is_completed,'ex')
+    const showComplete = () => {
+        Toast.show('Excercise Already Completed', Toast.SHORT)
+    }
+    return (
+        loading ? 
+        (
+            <View style={{display:'flex', flex:1, justifyContent:'center'}}>
+                <ActivityIndicator color="#B02E14" size={'large'}/>
+            </View>
+        ):
         <View style={{backgroundColor:'#040506', flex:1}}>
             <ImageBackground source={require('../../assets/images/deadlift-barbell.jpg')} imageStyle={{opacity:0.5}} style={{width:'100%', height:250}}>
                 <View style={{display:'flex', margin:30}}>
@@ -96,7 +108,7 @@ const Home = (props) => {
                         <Text style={{color:'white', textAlign:'center', fontFamily:'Poppins-SemiBold',fontSize:16,marginTop:15}}>WORKOUT FOR TODAY</Text>
                     </View>
                     <View>
-                    <TouchableOpacity onPress={()=>props.navigation.navigate('Workout', {
+                    <TouchableOpacity onPress={()=>userExcercise.is_completed ? showComplete() : props.navigation.navigate('Workout', {
                         userData:userExcercise
                     })}>
                         <View style={{display:'flex', flexDirection:'row', borderRadius:10, justifyContent:'space-between', margin:20, backgroundColor:'#303030'}}>
@@ -119,6 +131,11 @@ const Home = (props) => {
                             </View>
                             <View>
                                 <Image source={{uri:getExcerciseImage()}} style={{width:190,height:150, borderTopRightRadius:10, borderBottomRightRadius:10, opacity:0.6}}/>
+                            </View>
+                            <View style={{position:'absolute', right:10, top:10}}>
+                                {
+                                    userExcercise.is_completed  ? <Icon name="check-circle" color="green" size={25}/> : null
+                                } 
                             </View>
                         </View>
                     </TouchableOpacity>

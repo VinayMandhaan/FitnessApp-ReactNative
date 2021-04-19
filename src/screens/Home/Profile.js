@@ -8,9 +8,12 @@ import {
 } from 'react-native';
 import {TextInput} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {logout} from '../../actions/auth'
+import {useDispatch} from 'react-redux'
 
 
 const Profile = (props) => {
+    const dispatch = useDispatch()
     return(
         <View style={{backgroundColor:'#040506', flex:1}}>
             <View style={{margin:20, marginTop:40}}>
@@ -25,10 +28,12 @@ const Profile = (props) => {
                     <Icon name="chevron-right" color="white" size={20}/>
                 </View>
                 </TouchableOpacity>
+                <TouchableOpacity onPress={() => dispatch(logout())}>
                 <View style={{backgroundColor:'#303030', margin:20, padding:10, elevation:2, borderRadius:10, display:'flex', flexDirection:'row', justifyContent:'space-between'}}>
                     <Text style={{color:'white', fontFamily:'Poppins-SemiBold'}}>Logout</Text>
                     <Icon name="logout" color="white" size={20}/>
                 </View>
+                </TouchableOpacity>
             </View>
         </View>
     )

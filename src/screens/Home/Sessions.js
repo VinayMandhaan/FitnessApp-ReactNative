@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {TextInput} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {get_excercise, complete_session} from '../../actions/excercise'
+import {get_excercise, complete_session, complete_excercise, leftover_excercise} from '../../actions/excercise'
 import {useDispatch, useSelector} from 'react-redux'
 
 
@@ -25,15 +25,22 @@ const Sessions = (props) => {
     }
 
     const getCurrentExcercise = () => {
+        const data = {
+            excersize_id : updatedExcercise[selectedIndex]._id,
+            status:true
+        }
+        dispatch(complete_session(data))
         if(selectedIndex < updatedExcercise.length-1){
             console.log(updatedExcercise[selectedIndex]._id,'IDDD')
-            const data = {
-                excersize_id : updatedExcercise[selectedIndex]._id,
-                status:true
-            }
-            dispatch(complete_session(data))
             setSelectedIndex(selectedIndex => selectedIndex + 1)
         }else{
+            const completeData = {
+                week_excersize_id: userSession._id,
+                status:true
+            }
+            dispatch(complete_excercise(completeData))
+            dispatch(get_excercise())
+            dispatch(leftover_excercise())
             props.navigation.navigate('Main')
         }
     }
@@ -41,6 +48,7 @@ const Sessions = (props) => {
     useEffect(() => {
         getExcercises()
     },[])
+
 
     // console.log(userExcercise && updatedExcercise[selectedIndex] && updatedExcercise[selectedIndex].excersize.name,'Updated')
     return (
