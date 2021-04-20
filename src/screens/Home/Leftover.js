@@ -82,7 +82,7 @@ const Leftover = (props) => {
             <ScrollView>
             <View>
                 {
-                    userLeftOver && userLeftOver.map((s,i) => (
+                    userLeftOver ? userLeftOver.map((s,i) => (
                     <View style={{backgroundColor:'#303030', margin:20, padding:20, borderRadius:10}}>
                         <View style={{display:'flex', flexDirection:'row', marginBottom:10, justifyContent:'center',  alignItems:'center'}}>
                             <Text style={{color:'white', fontFamily:'Poppins-SemiBold', marginLeft:10}}>{getExcersieName(s)}</Text>
@@ -109,7 +109,7 @@ const Leftover = (props) => {
                         </View>
                         </View>
                     </View>
-                    ))
+                    )) : <Text style={{color:'white', textAlign:'center', fontFamily:'Poppins-SemiBold'}}>NO LEFTOVER EXERCISES</Text>
                 }
             </View>
             </ScrollView>

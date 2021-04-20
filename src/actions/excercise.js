@@ -1,5 +1,5 @@
 import api from '../utils/api'
-import { COMPLETE_EXERCISE, GET_EXCERCISE, GET_LEFTOVER_EXCERCISE, SESSION_COMPLETED } from './types'
+import { COMPLETE_EXERCISE, GET_EXCERCISE, GET_LEFTOVER_EXCERCISE, GET_REPORT, SESSION_COMPLETED } from './types'
 import AsyncStorage from '@react-native-community/async-storage'
 import setAuthToken from '../utils/setAuthToken'
 import Toast from 'react-native-simple-toast';
@@ -58,7 +58,19 @@ export const complete_excercise = (data) => async dispatch => {
             payload:res.data
         })
     }catch(err){
+        console.log(err)
+    }
+}
 
+export const excercise_reports = () => async dispatch => {
+    try{
+        const res = await api.get('/weekexcersizes/all/me')
+        dispatch({
+            type:GET_REPORT,
+            payload:res.data
+        })
+    }catch(err){
+        console.log(err)
     }
 }
 

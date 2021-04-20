@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {TextInput} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {get_excercise} from '../../actions/excercise'
+import {excercise_reports, get_excercise} from '../../actions/excercise'
 import {useDispatch, useSelector} from 'react-redux'
 import Toast from 'react-native-simple-toast';
 
@@ -42,6 +42,7 @@ const Home = (props) => {
     const getExcercises = () => {
         // console.log('Function Called')
         dispatch(get_excercise())
+        dispatch(excercise_reports())
     }
 
     const getExerciseName = () => {
@@ -134,7 +135,7 @@ const Home = (props) => {
                             </View>
                             <View style={{position:'absolute', right:10, top:10}}>
                                 {
-                                    userExcercise.is_completed  ? <Icon name="check-circle" color="green" size={25}/> : null
+                                    userExcercise && userExcercise.is_completed  ? <Icon name="check-circle" color="green" size={25}/> : null
                                 } 
                             </View>
                         </View>
