@@ -1,5 +1,5 @@
 
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {
     Image,
     Text,
@@ -31,8 +31,11 @@ const Register = (props) => {
             username:username,
             confirmpassword:password
         }
-        dispatch(register(formData))
+        dispatch(register(formData)).then((res) => {
+                props.navigation.navigate('Login')
+        })
     }
+
 
     console.log(isReg,'IS REGISTERED')
     return (

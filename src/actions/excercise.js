@@ -8,6 +8,7 @@ import axios from 'axios';
 
 export const get_excercise = () => async dispatch => {
     // console.log('Action Called')
+    console.log('FIRST ACTION')
     try{
         // console.log('Before API')
         const res = await api.get('/weekexcersizes/me')
@@ -16,7 +17,7 @@ export const get_excercise = () => async dispatch => {
             type:GET_EXCERCISE,
             payload:res.data
         })
-        // console.log(res,'EX')
+        // console.log(res.data,'EX')
         // console.log(res.data,'EXCERCISE')
     }catch(err){
         console.log(err)
@@ -26,6 +27,7 @@ export const get_excercise = () => async dispatch => {
 
 export const complete_session = (data) => async dispatch => {
     try{
+        console.log('FIRST SESSION')
         const res = await api.post('/weekexcersizes/status', data)
         dispatch({
             type:SESSION_COMPLETED,
@@ -57,7 +59,10 @@ export const complete_excercise = (data) => async dispatch => {
             type:COMPLETE_EXERCISE,
             payload:res.data
         })
+        dispatch(get_excercise())
+
     }catch(err){
+        dispatch(get_excercise())
         console.log(err)
     }
 }

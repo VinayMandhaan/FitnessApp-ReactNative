@@ -24,11 +24,12 @@ const Sessions = (props) => {
         setUpdatedExcercise(userSession.excersize.filter(x => x.isCompleted == false))
     }
 
-    const getCurrentExcercise = () => {
+    const getCurrentExcercise = async() => {
         const data = {
             excersize_id : updatedExcercise[selectedIndex]._id,
             status:true
         }
+        console.log(selectedIndex,'SELECTED INDEX')
         dispatch(complete_session(data))
         if(selectedIndex < updatedExcercise.length-1){
             console.log(updatedExcercise[selectedIndex]._id,'IDDD')
@@ -39,9 +40,10 @@ const Sessions = (props) => {
                 status:true
             }
             dispatch(complete_excercise(completeData))
-            dispatch(get_excercise())
             dispatch(leftover_excercise())
             dispatch(excercise_reports())
+            dispatch(get_excercise())
+
             props.navigation.navigate('Main')
         }
     }

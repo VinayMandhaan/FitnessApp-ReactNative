@@ -13,16 +13,18 @@ export default function(state = initalState, action){
     const {type, payload} = action
     switch(type){
         case GET_EXCERCISE:
-            return {
+        console.log(payload,'Exerci')    
+        return {
                 ...state,
                 loading: false,
                 excercises:payload
             }
         case SESSION_COMPLETED:
+            console.log('FIRST')
             return {
                 ...state,
                 loading:false,
-                excercises:payload
+                // excercises:payload
            }
         case GET_LEFTOVER_EXCERCISE:
             return {
@@ -31,6 +33,7 @@ export default function(state = initalState, action){
                 leftover:payload
             }
         case COMPLETE_EXERCISE:
+            console.log('SECOND')
             return {
                 ...state,
                 loading:false,

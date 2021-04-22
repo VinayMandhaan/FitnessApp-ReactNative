@@ -13,6 +13,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {excercise_reports, get_excercise} from '../../actions/excercise'
 import {useDispatch, useSelector} from 'react-redux'
 import Toast from 'react-native-simple-toast';
+import { useFocusEffect } from '@react-navigation/native'
 
 const Home = (props) => {
     const dispatch = useDispatch()
@@ -44,6 +45,7 @@ const Home = (props) => {
         dispatch(get_excercise())
         dispatch(excercise_reports())
     }
+
 
     const getExerciseName = () => {
         var exName

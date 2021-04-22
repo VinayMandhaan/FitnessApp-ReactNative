@@ -44,21 +44,19 @@ export const loadUser = () => async dispatch => {
 export const register = (formData) => async dispatch => {
     
     try{
-        console.log("register called")
         const res = await api.post('/users/signup',formData)
         dispatch({
             type: REGISTER_SUCCESS,
             payload: res.data
         })
-        console.log("register called")
 
-        dispatch(loadUser())
+        // dispatch(loadUser())
         Toast.show("Registered Successfully", Toast.SHORT)
     }catch(err){
         console.log( err.response.data)
         const errors = err.response.data.errors
         if(errors){
-            errors.forEach(error => Toast.show(JSON.stringify(error.msg), Toast.SHORT))
+            errors.forEach(error => Toast.show(JSON.stringify(error.message), Toast.SHORT))
         } 
         dispatch({
             type: REGISTER_FAIL
