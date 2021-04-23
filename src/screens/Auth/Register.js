@@ -13,6 +13,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import {register} from '../../actions/auth'
 import {useSelector, useDispatch} from 'react-redux'
+import Toast from 'react-native-simple-toast';
 
 const Register = (props) => {
     const dispatch = useDispatch()
@@ -31,9 +32,18 @@ const Register = (props) => {
             username:username,
             confirmpassword:password
         }
-        dispatch(register(formData)).then((res) => {
+        if(!formData.email.length > 0){
+            console.log('Hey')
+            Toast.show('Email Is Required', Toast.SHORT)
+        } else if(!formData.username.length > 0){
+            Toast.show('Username Is Required', Toast.SHORT)
+        } else if(!formData.password.length > 0){
+            Toast.show('Password Is Required', Toast.SHORT)
+        }else{
+            dispatch(register(formData)).then((res) => {
                 props.navigation.navigate('Login')
-        })
+            })
+        }
     }
 
 
@@ -80,6 +90,7 @@ const Register = (props) => {
                 style={{borderRadius:10, borderColor:'red'}}
                 label="Password"
                 onChangeText={(e)=>setPassword(e)}
+                secureTextEntry={true}
             />
             </View>
             <View>

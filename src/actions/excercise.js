@@ -41,6 +41,7 @@ export const complete_session = (data) => async dispatch => {
 
 export const leftover_excercise = () => async dispatch => {
     try{
+        console.log('LEFT OVER')
         const res = await api.get('/weekexcersizes/leftover/me')
         dispatch({
             type:GET_LEFTOVER_EXCERCISE,
@@ -60,9 +61,13 @@ export const complete_excercise = (data) => async dispatch => {
             payload:res.data
         })
         dispatch(get_excercise())
+        dispatch(leftover_excercise())
+        dispatch(excercise_reports())
 
     }catch(err){
         dispatch(get_excercise())
+        dispatch(leftover_excercise())
+        dispatch(excercise_reports())
         console.log(err)
     }
 }

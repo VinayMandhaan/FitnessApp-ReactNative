@@ -58,6 +58,7 @@ const Login = (props) => {
                 style={{borderRadius:10, borderColor:'red'}}
                 label="Password"
                 onChangeText={(e)=>setPassword(e)}
+                secureTextEntry={true}
 
             />
             <View>

@@ -11,20 +11,25 @@ import {TextInput} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {get_excercise, complete_session, complete_excercise, leftover_excercise, excercise_reports} from '../../actions/excercise'
 import {useDispatch, useSelector} from 'react-redux'
-
+import CountDown from 'react-native-countdown-component';
 
 const Sessions = (props) => {    
     const dispatch = useDispatch()
     const {userSession} = props.route.params
     const [selectedIndex, setSelectedIndex] = useState(0)
     const [updatedExcercise, setUpdatedExcercise] = useState([])
+    const [displayTimer, setDisplayTimer] = useState(false)
 
+    const countdownTimer = () => {
+        setDisplayTimer(!displayTimer)
+    }
 
     const getExcercises = () => {
         setUpdatedExcercise(userSession.excersize.filter(x => x.isCompleted == false))
     }
 
     const getCurrentExcercise = async() => {
+        setDisplayTimer(false)
         const data = {
             excersize_id : updatedExcercise[selectedIndex]._id,
             status:true
@@ -55,8 +60,29 @@ const Sessions = (props) => {
 
     // console.log(userExcercise && updatedExcercise[selectedIndex] && updatedExcercise[selectedIndex].excersize.name,'Updated')
     return (
-        <View style={{backgroundColor:'#040506', flex:1}}>
-            <ImageBackground source={{uri:updatedExcercise[selectedIndex] && updatedExcercise[selectedIndex].excersize.image}} imageStyle={{opacity:0.5, resizeMode:'cover'}} style={{width:'100%', height:300}}>
+        displayTimer ? (
+            <View style={{flex:1}}>
+            <ImageBackground source={require('../../assets/images/gym.jpg')} imageStyle={{opacity:0.5, resizeMode:'cover'}} style={{width:'100%', height:'100%'}}>
+                <View style={{flex:1,justifyContent:'center'}}>
+                <View style={{display:'flex', margin:30, alignItems:'center'}}>
+                    <Text style={{color:'white', fontSize:24,fontFamily:'Poppins-Bold'}}>TAKE REST</Text>
+                </View>
+                <CountDown
+                    until={90}
+                    onFinish={() => getCurrentExcercise()}
+                    onPress={() => getCurrentExcercise()}
+                    size={30}
+                    digitStyle={{backgroundColor: '#B02E14'}}
+                    digitTxtStyle={{color: '#FFF'}}
+                    timeToShow={['M', 'S']}
+                    timeLabels={{m: 'MM', s: 'SS'}}
+                />
+                </View>
+            </ImageBackground>
+            </View>
+        ):
+            <View style={{backgroundColor:'#040506', flex:1}}>
+            <ImageBackground source={{uri:updatedExcercise[selectedIndex] && updatedExcercise[selectedIndex].excersize.image}} imageStyle={{opacity:0.5, resizeMode:'center'}} style={{width:'100%', height:300}}>
                 <View style={{margin:30, borderRadius:80/2, borderColor:'white', borderWidth:2, height:40, width:40, justifyContent:'center', alignItems:'center'}}>
                     <TouchableOpacity onPress={()=>props.navigation.pop()}>
                         <Icon name="chevron-left" color="white" size={30}/>
@@ -85,7 +111,7 @@ const Sessions = (props) => {
             </View>
             </View>
             <View style={{position:'absolute', bottom:10, width:'100%'}}>
-                <TouchableOpacity onPress={()=>getCurrentExcercise()} style={{backgroundColor:'#F12908', margin:10, padding:20, borderRadius:10}}>
+                <TouchableOpacity onPress={()=>countdownTimer()} style={{backgroundColor:'#F12908', margin:10, padding:20, borderRadius:10}}>
                     <Text style={{color:'white', fontWeight:'bold', textAlign:'center'}}>COMPLETED</Text>
                 </TouchableOpacity>
             </View>
