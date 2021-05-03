@@ -6,12 +6,15 @@ import {
     Text,
     TouchableOpacity,
     View,
+    Dimensions
 } from 'react-native';
 import {TextInput} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Entypo from 'react-native-vector-icons/Entypo'
 import {get_excercise} from '../../actions/excercise'
 import {useDispatch, useSelector} from 'react-redux'
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height
 
 
 const Workout = (props) => {
@@ -80,7 +83,7 @@ const Workout = (props) => {
 
     return (
         <View style={{display:'flex', flex:1}}>
-            <ImageBackground source={{uri:getExcerciseImage()}} imageStyle={{opacity:0.5}} style={{width:'100%', height:250}}>
+            <ImageBackground source={{uri:getExcerciseImage()}} imageStyle={{opacity:0.5}} style={{width:'100%', height:height-530}}>
                 <View style={{margin:30, borderRadius:80/2, borderColor:'white', borderWidth:2, height:40, width:40, justifyContent:'center', alignItems:'center'}}>
                     <TouchableOpacity onPress={()=>props.navigation.pop()}>
                         <Icon name="chevron-left" color="white" size={30}/>

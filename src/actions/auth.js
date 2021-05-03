@@ -56,7 +56,7 @@ export const register = (formData) => async dispatch => {
         console.log( err.response.data)
         const errors = err.response.data.errors
         if(errors){
-            errors.forEach(error => Toast.show(JSON.stringify(error.message), Toast.SHORT))
+            errors.forEach(error => Toast.show(JSON.stringify(error.msg), Toast.SHORT))
         } 
         dispatch({
             type: REGISTER_FAIL
@@ -79,7 +79,7 @@ export const login = (formData,navigation) => async dispatch => {
             type: LOGIN_SUCCESS,
             payload: res.data
         })
-        Toast.show(res.data.message, Toast.SHORT)
+        Toast.show(res.data.msg, Toast.SHORT)
         // dispatch(loadUser())
         // navigation.navigate('Main')
 

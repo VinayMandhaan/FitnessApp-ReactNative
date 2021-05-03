@@ -56,6 +56,7 @@ const Leftover = (props) => {
     }
 
     useEffect(() => {
+        console.log(userLeftOver)
         getLeftOver()
     },[])
 
@@ -82,7 +83,7 @@ const Leftover = (props) => {
             <ScrollView>
             <View>
                 {
-                    userLeftOver ? userLeftOver.map((s,i) => (
+                    userLeftOver.length > 0 ? userLeftOver.map((s,i) => (
                     <View style={{backgroundColor:'#303030', margin:20, padding:20, borderRadius:10}}>
                         <View style={{display:'flex', flexDirection:'row', marginBottom:10, justifyContent:'center',  alignItems:'center'}}>
                             <Text style={{color:'white', fontFamily:'Poppins-SemiBold', marginLeft:10}}>{getExcersieName(s)}</Text>

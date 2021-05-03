@@ -33,8 +33,14 @@ export const complete_session = (data) => async dispatch => {
             type:SESSION_COMPLETED,
             payload:res.data
         })
+        dispatch(get_excercise())
+        dispatch(leftover_excercise())
+        dispatch(excercise_reports())
     }catch(err){
         console.log(err)
+        dispatch(get_excercise())
+        dispatch(leftover_excercise())
+        dispatch(excercise_reports())
     }
 }
 

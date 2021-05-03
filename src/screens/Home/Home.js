@@ -7,6 +7,7 @@ import {
     Text,
     TouchableOpacity,
     View,
+    Dimensions
 } from 'react-native';
 import {TextInput} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -14,6 +15,8 @@ import {excercise_reports, get_excercise} from '../../actions/excercise'
 import {useDispatch, useSelector} from 'react-redux'
 import Toast from 'react-native-simple-toast';
 import { useFocusEffect } from '@react-navigation/native'
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height
 
 const Home = (props) => {
     const dispatch = useDispatch()
@@ -86,7 +89,7 @@ const Home = (props) => {
             </View>
         ):
         <View style={{backgroundColor:'#040506', flex:1}}>
-            <ImageBackground source={require('../../assets/images/deadlift-barbell.jpg')} imageStyle={{opacity:0.5}} style={{width:'100%', height:250}}>
+            <ImageBackground source={require('../../assets/images/deadlift-barbell.jpg')} imageStyle={{opacity:0.5}} style={{width:'100%', height:height-550}}>
                 <View style={{display:'flex', margin:30}}>
                     <Text style={{color:'white', fontSize:22, marginTop:40, fontFamily:'Poppins-Bold'}}>WORKOUT SESSIONS</Text>
                     <Text style={{color:'#d3d3d3', marginTop:20, fontFamily:'Poppins-Regular'}}>Live Happier and Healthier By Working Out Everyday</Text>
@@ -101,7 +104,7 @@ const Home = (props) => {
                             <Text style={{color:'white', fontFamily:'Poppins-Bold', textAlign:'center'}}>REST DAY</Text>
                     </View>
                     <View>
-                        <Image source={require('../../assets/images/Bicep.jpg')} style={{width:190,height:150, borderTopRightRadius:10, borderBottomRightRadius:10, opacity:0.8}}/>
+                        <Image source={require('../../assets/images/Bicep.jpg')} style={{width:width-200,height:height-620, borderTopRightRadius:10, borderBottomRightRadius:10, opacity:0.8}}/>
                     </View>
                 </View>
                 ):
