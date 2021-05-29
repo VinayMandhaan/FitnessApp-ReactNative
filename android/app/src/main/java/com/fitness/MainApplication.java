@@ -1,4 +1,4 @@
-package com.fitness;
+package com.fitness1;
 
 import android.app.Application;
 import android.content.Context;

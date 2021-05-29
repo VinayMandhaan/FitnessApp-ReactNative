@@ -136,7 +136,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.fitness"
+        applicationId "com.fitness1"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

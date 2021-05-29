@@ -1,9 +1,0 @@
-com/fitness/MainActivity.java
- com.fitness.MainActivity
-com/fitness/MainApplication.java
- com.fitness.MainApplication
- com.fitness.MainApplication$1
-com/facebook/react/PackageList.java
- com.facebook.react.PackageList
-com/fitness/BuildConfig.java
- com.fitness.BuildConfig

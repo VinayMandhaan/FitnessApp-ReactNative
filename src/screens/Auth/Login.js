@@ -12,7 +12,7 @@ import {TextInput} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {login} from '../../actions/auth'
 import {useSelector, useDispatch} from 'react-redux'
-
+import {GoogleSignin, statusCodes} from '@react-native-community/google-signin';
 const Login = (props) => {
     const dispatch = useDispatch()
     const [email, setEmail] = useState('')
@@ -25,6 +25,56 @@ const Login = (props) => {
         }
         dispatch(login(formData))
     }
+
+    GoogleSignin.configure({
+        webClientId:
+          '320386011325-23hmvov9305cg28da9sr6sa6lh8jo2kb.apps.googleusercontent.com',
+        // iosClientId:"925551315399-9iht6r5pgs15r00tmfuuor961rh3ktb7.apps.googleusercontent.com",
+        androidClientId:
+          '320386011325-3md7ue5o3t21a2upbegue00jofl4dgnd.apps.googleusercontent.com',
+        offlineAccess: false,
+      });
+    
+
+    const socialAuth = async (type) => {
+        let data = {};
+ 
+          try {
+            await GoogleSignin.hasPlayServices();
+            const userInfo = await GoogleSignin.signIn();
+            // this.setState({ userInfo });
+            // console.log("signIn: ", userInfo);
+            console.log(userInfo)
+    
+            const tokens = await GoogleSignin.getTokens();
+    
+            console.log('GoogleSignin tokens: ', tokens);
+            data = {
+              method: 'google',
+              access_token: tokens.accessToken,
+            };
+            dispatch(login(data))
+           
+          } catch (error) {
+            alert(error);
+            if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+              // user cancelled the login flow
+              console.log('user cancelled the login flow');
+            } else if (error.code === statusCodes.IN_PROGRESS) {
+              console.log('operation (e.g. sign in) is in progress already');
+              // operation (e.g. sign in) is in progress already
+            } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+              console.log('play services not available or outdated');
+              // play services not available or outdated
+            } else {
+              console.log('some other error happened:', error.message);
+              // some other error happened
+            }
+          }
+        
+      };
+
+
 
     return (
         <View style={{flex:1}}>
@@ -81,8 +131,8 @@ const Login = (props) => {
                 <Text style={{color:'white', fontFamily:'Poppins-Bold', fontSize:18, textAlign:'center'}}>OR</Text>
             </View>
             <View style={{alignItems:'center', marginTop:20}}>
-                <TouchableOpacity>
-                    <Image source={require('../../assets/images/google.png')} style={{width:60, height:60}}/>
+                <TouchableOpacity  onPress={() => socialAuth('google')}>
+                    <Image  source={require('../../assets/images/google.png')} style={{width:60, height:60}}/>
                 </TouchableOpacity>
             </View>
             </ImageBackground>

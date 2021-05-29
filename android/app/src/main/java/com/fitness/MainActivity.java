@@ -1,4 +1,4 @@
-package com.fitness;
+package com.fitness1;
 
 import com.facebook.react.ReactActivity;
 
