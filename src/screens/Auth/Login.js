@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {TextInput} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {login} from '../../actions/auth'
+import {googleLogin, login} from '../../actions/auth'
 import {useSelector, useDispatch} from 'react-redux'
 import {GoogleSignin, statusCodes} from '@react-native-community/google-signin';
 const Login = (props) => {
@@ -48,12 +48,7 @@ const Login = (props) => {
     
             const tokens = await GoogleSignin.getTokens();
     
-            console.log('GoogleSignin tokens: ', tokens);
-            data = {
-              method: 'google',
-              access_token: tokens.accessToken,
-            };
-            dispatch(login(data))
+            dispatch(googleLogin(tokens.accessToken))
            
           } catch (error) {
             alert(error);

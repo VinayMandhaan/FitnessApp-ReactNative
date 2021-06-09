@@ -120,3 +120,35 @@ export const getUpdatedUserInfo = () => async dispatch => {
         })
     }
 }
+
+
+export const googleLogin = (token) => async dispatch => {
+    // const body = JSON.stringify({email,password})
+    var formData = {
+        method : 'google',
+        access_token: token
+    }
+    try{
+        const res = await api.post('/auth/login',formData)
+        // console.warn('Login Success', res.data.token)
+        // AsyncStorage.setItem('token',JSON.stringify(res.data.token))
+        dispatch({
+            type: LOGIN_SUCCESS,
+            payload: res.data
+        })
+        Toast.show(res.data.msg, Toast.SHORT)
+        // dispatch(loadUser())
+        // navigation.navigate('Main')
+        console.log(res.data,'GOOGLE SIGN IN')
+
+    }catch(err){
+        Toast.show('Invalid ID or Password', Toast.SHORT)
+        const errors = err.response.data.errors
+        if(errors){
+            errors.forEach(error => dispatch(error.msg,'danger'))
+        } 
+        dispatch({
+            type: LOGIN_FAIL
+        })
+    }
+}

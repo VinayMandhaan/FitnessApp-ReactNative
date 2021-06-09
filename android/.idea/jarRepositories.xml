@@ -14,7 +14,7 @@
     <remote-repository>
       <option name="id" value="MavenLocal" />
       <option name="name" value="MavenLocal" />
-      <option name="url" value="file:/$PROJECT_DIR$/../../../../Vinay%20Kumar/.m2/repository/" />
+      <option name="url" value="file:/$USER_HOME$/Vinay%20Kumar/.m2/repository/" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="maven3" />
@@ -24,7 +24,7 @@
     <remote-repository>
       <option name="id" value="maven2" />
       <option name="name" value="maven2" />
-      <option name="url" value="file:/$PROJECT_DIR$/../../../../Vinay%20Kumar/ReactNative/FitnessApp-ReactNative/node_modules/jsc-android/dist/" />
+      <option name="url" value="file:/$USER_HOME$/Vinay%20Kumar/ReactNative/FitnessApp-ReactNative/node_modules/jsc-android/dist/" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="BintrayJCenter" />
@@ -34,7 +34,7 @@
     <remote-repository>
       <option name="id" value="maven" />
       <option name="name" value="maven" />
-      <option name="url" value="file:/$PROJECT_DIR$/../../../../Vinay%20Kumar/ReactNative/FitnessApp-ReactNative/node_modules/react-native/android/" />
+      <option name="url" value="file:/$USER_HOME$/Vinay%20Kumar/ReactNative/FitnessApp-ReactNative/node_modules/react-native/android/" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="Google" />
@@ -54,7 +54,32 @@
     <remote-repository>
       <option name="id" value="maven4" />
       <option name="name" value="maven4" />
-      <option name="url" value="file:/$PROJECT_DIR$/../../../../Vinay%20Kumar/ReactNative/FitnessApp-ReactNative/node_modules/react-native-screens/node_modules/react-native/android" />
+      <option name="url" value="file:/$USER_HOME$/Vinay%20Kumar/ReactNative/FitnessApp-ReactNative/node_modules/react-native-screens/node_modules/react-native/android" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="MavenLocal" />
+      <option name="name" value="MavenLocal" />
+      <option name="url" value="file:/$PROJECT_DIR$/../../../../../Vinay%20Kumar/.m2/repository/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven" />
+      <option name="name" value="maven" />
+      <option name="url" value="file:/$PROJECT_DIR$/../../../../../Vinay%20Kumar/Desktop/Fiverr/FitnessApp-ReactNative/node_modules/react-native/android/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven2" />
+      <option name="name" value="maven2" />
+      <option name="url" value="file:/$PROJECT_DIR$/../../../../../Vinay%20Kumar/Desktop/Fiverr/FitnessApp-ReactNative/node_modules/jsc-android/dist/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven4" />
+      <option name="name" value="maven4" />
+      <option name="url" value="file:/$PROJECT_DIR$/../../../../../Vinay%20Kumar/Desktop/Fiverr/FitnessApp-ReactNative/node_modules/react-native-screens/node_modules/react-native/android" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven4" />
+      <option name="name" value="maven4" />
+      <option name="url" value="file:/$PROJECT_DIR$/../../../../../Vinay%20Kumar/Desktop/Fiverr/FitnessApp-ReactNative/node_modules/@react-native-community/google-signin/node_modules/react-native/android" />
     </remote-repository>
   </component>
 </project>
